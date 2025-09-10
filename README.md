@@ -1,175 +1,173 @@
-# D-Lab Python NLP Fundamentals Workshop
+# Taller de fundamentos de PNL de D-Lab Python
 
 [![Datahub](https://img.shields.io/badge/launch-datahub-blue)](https://dlab.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fdlab-berkeley%2FPython-Text-Analysis&urlpath=lab%2Ftree%2FPython-Text-Analysis%2F&branch=main)
 [![Binder](https://img.shields.io/badge/launch-binder-579aca.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFkAAABZCAMAAABi1XidAAAB8lBMVEX///9XmsrmZYH1olJXmsr1olJXmsrmZYH1olJXmsr1olJXmsrmZYH1olL1olJXmsr1olJXmsrmZYH1olL1olJXmsrmZYH1olJXmsr1olL1olJXmsrmZYH1olL1olJXmsrmZYH1olL1olL0nFf1olJXmsrmZYH1olJXmsq8dZb1olJXmsrmZYH1olJXmspXmspXmsr1olL1olJXmsrmZYH1olJXmsr1olL1olJXmsrmZYH1olL1olLeaIVXmsrmZYH1olL1olL1olJXmsrmZYH1olLna31Xmsr1olJXmsr1olJXmsrmZYH1olLqoVr1olJXmsr1olJXmsrmZYH1olL1olKkfaPobXvviGabgadXmsqThKuofKHmZ4Dobnr1olJXmsr1olJXmspXmsr1olJXmsrfZ4TuhWn1olL1olJXmsqBi7X1olJXmspZmslbmMhbmsdemsVfl8ZgmsNim8Jpk8F0m7R4m7F5nLB6jbh7jbiDirOEibOGnKaMhq+PnaCVg6qWg6qegKaff6WhnpKofKGtnomxeZy3noG6dZi+n3vCcpPDcpPGn3bLb4/Mb47UbIrVa4rYoGjdaIbeaIXhoWHmZYHobXvpcHjqdHXreHLroVrsfG/uhGnuh2bwj2Hxk17yl1vzmljzm1j0nlX1olL3AJXWAAAAbXRSTlMAEBAQHx8gICAuLjAwMDw9PUBAQEpQUFBXV1hgYGBkcHBwcXl8gICAgoiIkJCQlJicnJ2goKCmqK+wsLC4usDAwMjP0NDQ1NbW3Nzg4ODi5+3v8PDw8/T09PX29vb39/f5+fr7+/z8/Pz9/v7+zczCxgAABC5JREFUeAHN1ul3k0UUBvCb1CTVpmpaitAGSLSpSuKCLWpbTKNJFGlcSMAFF63iUmRccNG6gLbuxkXU66JAUef/9LSpmXnyLr3T5AO/rzl5zj137p136BISy44fKJXuGN/d19PUfYeO67Znqtf2KH33Id1psXoFdW30sPZ1sMvs2D060AHqws4FHeJojLZqnw53cmfvg+XR8mC0OEjuxrXEkX5ydeVJLVIlV0e10PXk5k7dYeHu7Cj1j+49uKg7uLU61tGLw1lq27ugQYlclHC4bgv7VQ+TAyj5Zc/UjsPvs1sd5cWryWObtvWT2EPa4rtnWW3JkpjggEpbOsPr7F7EyNewtpBIslA7p43HCsnwooXTEc3UmPmCNn5lrqTJxy6nRmcavGZVt/3Da2pD5NHvsOHJCrdc1G2r3DITpU7yic7w/7Rxnjc0kt5GC4djiv2Sz3Fb2iEZg41/ddsFDoyuYrIkmFehz0HR2thPgQqMyQYb2OtB0WxsZ3BeG3+wpRb1vzl2UYBog8FfGhttFKjtAclnZYrRo9ryG9uG/FZQU4AEg8ZE9LjGMzTmqKXPLnlWVnIlQQTvxJf8ip7VgjZjyVPrjw1te5otM7RmP7xm+sK2Gv9I8Gi++BRbEkR9EBw8zRUcKxwp73xkaLiqQb+kGduJTNHG72zcW9LoJgqQxpP3/Tj//c3yB0tqzaml05/+orHLksVO+95kX7/7qgJvnjlrfr2Ggsyx0eoy9uPzN5SPd86aXggOsEKW2Prz7du3VID3/tzs/sSRs2w7ovVHKtjrX2pd7ZMlTxAYfBAL9jiDwfLkq55Tm7ifhMlTGPyCAs7RFRhn47JnlcB9RM5T97ASuZXIcVNuUDIndpDbdsfrqsOppeXl5Y+XVKdjFCTh+zGaVuj0d9zy05PPK3QzBamxdwtTCrzyg/2Rvf2EstUjordGwa/kx9mSJLr8mLLtCW8HHGJc2R5hS219IiF6PnTusOqcMl57gm0Z8kanKMAQg0qSyuZfn7zItsbGyO9QlnxY0eCuD1XL2ys/MsrQhltE7Ug0uFOzufJFE2PxBo/YAx8XPPdDwWN0MrDRYIZF0mSMKCNHgaIVFoBbNoLJ7tEQDKxGF0kcLQimojCZopv0OkNOyWCCg9XMVAi7ARJzQdM2QUh0gmBozjc3Skg6dSBRqDGYSUOu66Zg+I2fNZs/M3/f/Grl/XnyF1Gw3VKCez0PN5IUfFLqvgUN4C0qNqYs5YhPL+aVZYDE4IpUk57oSFnJm4FyCqqOE0jhY2SMyLFoo56zyo6becOS5UVDdj7Vih0zp+tcMhwRpBeLyqtIjlJKAIZSbI8SGSF3k0pA3mR5tHuwPFoa7N7reoq2bqCsAk1HqCu5uvI1n6JuRXI+S1Mco54YmYTwcn6Aeic+kssXi8XpXC4V3t7/ADuTNKaQJdScAAAAAElFTkSuQmCC)](https://mybinder.org/v2/gh/dlab-berkeley/Python-Text-Analysis/HEAD)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
-This repository contains the materials for the D-Lab Python NLP Fundamentals
-workshop. 
+Este repositorio contiene los materiales para D-Lab Python NLP Fundamentals
+taller. 
 
-## Prerequisites
+## Prerequisitos
 
-We recommend attending Python Fundamentals, Python Data Wrangling, and
-Python Machine Learning Fundamentals prior to this workshop.
+* Recomendamos asistir a Fundamentos de Python, Organización de datos de Python y
+* Fundamentos de Python Machine Learning antes de este taller.
 
-Check out D-Lab’s [Workshop Catalog](https://dlab-berkeley.github.io/dlab-workshops/) to browse all workshops, see what’s running now, and review prerequisites.
+Consulte el [Catálogo de talleres] (https://dlab-berkeley.github.io/dlab-workshops/) de D-Lab para explorar todos los talleres, ver lo que se está ejecutando ahora y revisar los requisitos previos.
 
-## Workshop Goals
+## Objetivos del taller
 
-This 3-part workshop will prepare participants to move forward with research using Natural Language Processing (NL), with a special focus on social science applications. We explore fundamental approaches to applying computational methods to text in Python. We cover some of the major packages used in NLP, including scikit-learn, NLTK, spaCy, and Gensim.
+Este taller de 3 partes preparará a los participantes para avanzar con la investigación utilizando el procesamiento del lenguaje natural (NL), con un enfoque especial en las aplicaciones de las ciencias sociales. Exploramos enfoques fundamentales para aplicar métodos computacionales al texto en Python. Cubrimos algunos de los principales paquetes utilizados en NLP, incluidos scikit-learn, NLTK, spaCy y Gensim.
 
-1. **Part 1: Preprocessing.** How do we standardize and clean text
-   documents? Text data is noisy, and we often need to develop a pipeline in
-   order to standardize the data to better facilitate computational modeling. You will learn common and task-specific operations of preprocessing, 
-   becoming familiar with commonly used NLP packages and what they are capable of. You will also learn about tokenizers,
-   and how they have changed since the advent of Large Language Models.
-2. **Part 2: Bag-of-words.** In order to do any computational analysis on text data, we need to devise approaches to convert text into a 
-   numeric representation. You will learn how to convert text data to a frequency matrix, and how TF-IDF complements the Bag-of-Words representation.
-   You will also learn about parameter settings of a vectorizer and apply sentiment classification to vectorized text data.
-3. **Part 3: Word Embeddings.** Word Embeddings underpin nearly all modern language models. In this workshop, you will learn the differences 
-   between a bag-of-words representation and word embeddings. You will be introduced to calculating cosine similarity between words, and learn how 
-   word embeddings can suffer from biases.
+1. **Parte 1: Preprocesamiento.** ¿Cómo estandarizamos y limpiamos el texto?
+¿Documentos? Los datos de texto son ruidosos y, a menudo, necesitamos desarrollar una canalización en
+Con el fin de estandarizar los datos para facilitar mejor el modelado computacional. Aprenderá operaciones de preprocesamiento comunes y específicas de la tarea, 
+familiarizarse con los paquetes de NLP de uso común y de lo que son capaces. También aprenderá sobre tokenizadores,
+y cómo han cambiado desde el advenimiento de los grandes modelos de lenguaje.
+2. **Parte 2: Bolsa de palabras.** Para realizar cualquier análisis computacional de datos de texto, necesitamos idear enfoques para convertir el texto en un 
+representación numérica. Aprenderá cómo convertir datos de texto en una matriz de frecuencia y cómo TF-IDF complementa la representación de la bolsa de palabras.
+También aprenderá sobre la configuración de parámetros de un vectorizador y aplicará la clasificación de opiniones a los datos de texto vectorizados.
+3. **Parte 3: Incrustaciones de palabras.** Las incrustaciones de palabras sustentan casi todos los modelos de lenguaje modernos. En este taller, aprenderás las diferencias 
+entre una representación de bolsa de palabras e incrustaciones de palabras. Se le presentará el cálculo de la similitud del coseno entre palabras y aprenderá cómo 
+Las incrustaciones de palabras pueden sufrir sesgos.
 
-The materials for this workshop series are designed to build on each other. Part 2 assumes familiarity with the content from Part 1, and Part 3 similarly requires understanding of both preceding parts.
+Los materiales para esta serie de talleres están diseñados para complementarse unos con otros. La Parte 2 asume familiaridad con el contenido de la Parte 1, y la Parte 3 requiere de manera similar la comprensión de las dos partes anteriores.
 
+## Instrucciones de instalación
 
-## Installation Instructions
+Anaconda es un útil software de gestión de paquetes que permite ejecutar Python
+y cuadernos Jupyter fácilmente. Instalar Anaconda es la forma más fácil de hacer
+Seguro que tienes todo el software necesario para ejecutar los materiales para este taller.
+Si desea ejecutar Python en su propia computadora, complete lo siguiente
+Pasos previos al taller:
 
-Anaconda is a useful package management software that allows you to run Python
-and Jupyter notebooks easily. Installing Anaconda is the easiest way to make
-sure you have all the necessary software to run the materials for this workshop.
-If you would like to run Python on your own computer, complete the following
-steps prior to the workshop:
+1. [Descargue e instale Anaconda (Python 3.9
+distribución)](https://www.anaconda.com/products/individual). Haga clic en el icono
+Botón "Descargar".
 
-1. [Download and install Anaconda (Python 3.9
-   distribution)](https://www.anaconda.com/products/individual). Click the
-   "Download" button.
+2. Descargue el [taller] Análisis de texto de Python
+materiales](https://github.com/dlab-berkeley/Python-Text-Analysis):
 
-2. Download the Python Text Analysis [workshop
-   materials](https://github.com/dlab-berkeley/Python-Text-Analysis):
+- Haga clic en el botón verde "Código" en la parte superior derecha del repositorio
+información.
+- Haga clic en "Descargar Zip".
+- Extraiga este archivo a una carpeta en su computadora donde pueda fácilmente
+acceder a él (recomendamos Escritorio).
 
-   -   Click the green "Code" button in the top right of the repository
-        information.
-   -   Click "Download Zip".
-   -   Extract this file to a folder on your computer where you can easily
-        access it (we recommend Desktop).
+3. Opcional: si estás familiarizado con 'git', puedes clonarlo
+repositorio abriendo una terminal e ingresando el comando 'git clone
+git@github.com:dlab-berkeley/Python-Text-Analysis.git'.
 
-3. Optional: if you're familiar with `git`, you can instead clone this
-   repository by opening a terminal and entering the command `git clone
-   git@github.com:dlab-berkeley/Python-Text-Analysis.git`.
+## ¿Python no funciona en su computadora portátil? 
 
-## Is Python Not Working on Your Laptop? 
-
-If you do not have Anaconda installed and the materials loaded on your workshop
-by the time it starts, we *strongly* recommend using the D-Lab Datahub to
-run the materials for these lessons. You can access the DataHub by clicking the
-following button:
+Si no tiene Anaconda instalada y los materiales cargados en su taller
+para cuando comience,  recomendamos *encarecidamente* usar el centro de datos de D-Lab para
+Ejecute los materiales para estas lecciones. Para acceder al DataHub, haga clic en el botón
+siguiente botón:
 
 [![Datahub](https://img.shields.io/badge/launch-datahub-blue)](https://dlab.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fdlab-berkeley%2FPython-Text-Analysis&urlpath=lab%2Ftree%2FPython-Text-Analysis%2F&branch=main)
 
-The DataHub downloads this repository, along with any necessary packages, and
-allows you to run the materials in a Jupyter notebook that is stored on UC
-Berkeley's servers. No installation is necessary from your end - you only need
-an internet browser and a CalNet ID to log in. By using the DataHub, you can
-save your work and come back to it at any time. When you want to return to your
-saved work, just go straight to [DataHub](https://datahub.berkeley.edu), sign
-in, and you click on the `Python-Text-Analysis` folder.
+El DataHub descarga este repositorio, junto con los paquetes necesarios, y
+le permite ejecutar los materiales en un cuaderno de Jupyter que se almacena en UC
+Los servidores de Berkeley. No es necesaria ninguna instalación por su parte, solo necesita
+un navegador de Internet y una identificación de CalNet para iniciar sesión. Al usar DataHub, puede
+Guarde su trabajo y vuelva a él en cualquier momento. Cuando quieras volver a tu
+trabajo guardado, simplemente vaya directamente a [DataHub] (https://datahub.berkeley.edu), firme
+y haga clic en la carpeta 'Python-Text-Analysis'.
 
-If you don't have a Berkeley CalNet ID, you can still run these lessons in the
-cloud, by clicking this button:
+Si no tiene una identificación de Berkeley CalNet, aún puede ejecutar estas lecciones en el
+cloud, haciendo clic en este botón:
 
 [![Binder](https://img.shields.io/badge/launch-binder-579aca.svg?logo=data:image/png;base64,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)](https://mybinder.org/v2/gh/dlab-berkeley/Python-Text-Analysis/HEAD)
 
-Binder operates similarly to the D-Lab DataHub, but on a different set of
-servers. By using Binder, however, you cannot save your work.
+Binder funciona de manera similar al D-Lab DataHub, pero en un conjunto diferente de
+Servidores. Sin embargo, al usar Binder, no puede guardar su trabajo.
 
-## Run the Code
+## Ejecutar el código
 
-Now that you have all the required software and materials, you need to run the
-code.
+Ahora que tiene todo el software y los materiales necesarios, debe ejecutar el
+código.
 
-1. Open the Anaconda Navigator application. You should see the green snake logo
-   appear on your screen. Note that this can take a few minutes to load up the
-   first time. 
+1. Abra la aplicación Anaconda Navigator. Deberías ver el logotipo de la serpiente verde
+en tu pantalla. Tenga en cuenta que esto puede tardar unos minutos en cargar el archivo
+primera vez. 
 
-2. Click the "Launch" button under "JupyterLab" and navigate through your file
-   system on the left hand pane to the `Python-Text-Analysis` folder you
-   downloaded above. Note that, if you download the materials from GitHub, the
-   folder name may instead be `Python-Text-Analysis-main`.
+2. Haga clic en el botón "Iniciar" debajo de "JupyterLab" y navegue por su archivo
+sistema en el panel izquierdo a la carpeta 'Python-Text-Analysis'
+Descargado arriba. Tenga en cuenta que, si descarga los materiales de GitHub, el
+el nombre de la carpeta puede ser 'Python-Text-Analysis-main'.
 
-3. Go to the `lessons` folder and find the notebook corresponding to the
-   workshop you are attending.
+3. Vaya a la carpeta 'lecciones' y busque el cuaderno correspondiente a la
+taller al que asiste.
 
-4. Press Shift + Enter (or Ctrl + Enter) to run a cell.
+4. Presione Mayús + Entrar (o Ctrl + Entrar) para ejecutar una celda.
 
-5. You will need to install additional packages depending on which workshop you
-   are attending. The install commands are performed in the notebooks, as you
-   proceed through each part of the workshop.
+5. Deberá instalar paquetes adicionales según el taller que
+están asistiendo. Los comandos de instalación se realizan en los cuadernos, ya que
+Continúe con cada parte del taller.
 
-Note that all of the above steps can be run from the terminal, if you're
-familiar with how to interact with Anaconda in that fashion. However, using
-Anaconda Navigator is the easiest way to get started if this is your first time
-working with Anaconda.
+Tenga en cuenta que todos los pasos anteriores se pueden ejecutar desde la terminal, si está
+familiarizado con cómo interactuar con Anaconda de esa manera. Sin embargo, el uso de
+Anaconda Navigator es la forma más fácil de comenzar si es tu primera vez
+trabajando con Anaconda.
 
-# Additional Resources
+# Recursos adicionales
 
--  [Computational Text Analsysis Working Group (CTAWG)](http://dlabctawg.github.io)
--  [Info 256: Applied Natural Language Processing](https://www.ischool.berkeley.edu/courses/info/256)
--  [*Speech and Language Processing*](https://web.stanford.edu/~jurafsky/slp3/) by Jurafsky and Martin.
--  [Modern Deep Learning Techniques Applied to Natural Language Processing](https://nlpoverview.com/index.html) (online textbook)
+- [Grupo de Trabajo de Análisis de Texto Computacional (CTAWG)](http://dlabctawg.github.io)
+- [Info 256: Procesamiento aplicado del lenguaje natural](https://www.ischool.berkeley.edu/courses/info/256)
+- [*Procesamiento del habla y el lenguaje*](https://web.stanford.edu/~jurafsky/slp3/) por Jurafsky y Martin.
+- [Técnicas modernas de aprendizaje profundo aplicadas al procesamiento del lenguaje natural](https://nlpoverview.com/index.html) (libro de texto en línea)
 
-# About the UC Berkeley D-Lab
+# Acerca del D-Lab de UC Berkeley
 
-D-Lab works with Berkeley faculty, research staff, and students to advance
-data-intensive social science and humanities research. Our goal at D-Lab is to
-provide practical training, staff support, resources, and space to enable you to
-use R for your own research applications. Our services cater to all skill levels
-and no programming, statistical, or computer science backgrounds are necessary.
-We offer these services in the form of workshops, one-to-one consulting, and
-working groups that cover a variety of research topics, digital tools, and
-programming languages.  
+D-Lab trabaja con profesores, personal de investigación y estudiantes de Berkeley para avanzar
+Investigación intensiva en ciencias sociales y humanidades con uso intensivo de datos. Nuestro objetivo en D-Lab es
+proporcionar capacitación práctica, apoyo del personal, recursos y espacio para permitirle
+use R para sus propias aplicaciones de investigación. Nuestros servicios se adaptan a todos los niveles de habilidad
+y no se necesitan antecedentes en programación, estadística o informática.
+Ofrecemos estos servicios en forma de talleres, consultoría personalizada y
+grupos de trabajo que cubren una variedad de temas de investigación, herramientas digitales y
+lenguajes de programación.
 
-Visit the [D-Lab homepage](https://dlab.berkeley.edu/) to learn more about us.
-You can view our [calendar](https://dlab.berkeley.edu/events/calendar) for
-upcoming events, learn about how to utilize our
-[consulting](https://dlab.berkeley.edu/consulting) and [data
-services](https://dlab.berkeley.edu/data), and check out upcoming
-[workshops](https://dlab.berkeley.edu/events/workshops). Subscribe to our
-[newsletter](https://dlab.berkeley.edu/news/weekly-newsletter) to stay up to
-date on D-Lab events, services, and opportunities.
+Visite la [página de inicio de D-Lab](https://dlab.berkeley.edu/) para obtener más información sobre nosotros.
+Puede ver nuestro [calendario](https://dlab.berkeley.edu/events/calendar) para
+próximos eventos, aprenda cómo utilizar nuestros
+[consultoría](https://dlab.berkeley.edu/consulting) y [datos
+servicios](https://dlab.berkeley.edu/data), y echa un vistazo a los próximos
+[talleres](https://dlab.berkeley.edu/events/workshops). Suscríbete a nuestro
+[newsletter](https://dlab.berkeley.edu/news/weekly-newsletter) para mantenerse al día
+fecha en eventos, servicios y oportunidades de D-Lab.
 
-# Other D-Lab Python Workshops
+# Otros talleres de D-Lab Python
 
-D-Lab offers a variety of Python workshops, catered toward different levels of
-expertise.
+D-Lab ofrece una variedad de talleres de Python, dirigidos a diferentes niveles de
+pericia.
 
-## Introductory Workshops
+## Talleres introductorios
 
--  [Python Fundamentals](https://github.com/dlab-berkeley/Python-Fundamentals)
--  [Python Data Wrangling](https://github.com/dlab-berkeley/Python-Data-Wrangling)
--  [Python Data Visualization](https://github.com/dlab-berkeley/Python-Data-Visualization)
+- [Python Fundamentals](https://github.com/dlab-berkeley/Python-Fundamentals)
+- [Manejo de datos de Python](https://github.com/dlab-berkeley/Python-Data-Wrangling)
+- [Visualización de datos de Python](https://github.com/dlab-berkeley/Python-Data-Visualization)
 
-## Intermediate and Advanced Workshops
+## Talleres intermedios y avanzados
 
--  [Python Geospatial Fundamentals](https://github.com/dlab-berkeley/Geospatial-Data-and-Mapping-in-Python)
--  [Python Web Scraping and APIs](https://github.com/dlab-berkeley/Python-Web-Scraping)
--  [Python Machine Learning](https://github.com/dlab-berkeley/Python-Machine-Learning)
--  [Python Text Analysis](https://github.com/dlab-berkeley/Python-Text-Analysis)
--  [Python Deep Learning](https://github.com/dlab-berkeley/Python-Deep-Learning)
+- [Fundamentos geoespaciales de Python](https://github.com/dlab-berkeley/Geospatial-Data-and-Mapping-in-Python)
+- [Raspado web y API de Python](https://github.com/dlab-berkeley/Python-Web-Scraping)
+- [Aprendizaje automático de Python](https://github.com/dlab-berkeley/Python-Machine-Learning)
+- [Análisis de texto de Python](https://github.com/dlab-berkeley/Python-Text-Analysis)
+- [Aprendizaje profundo de Python](https://github.com/dlab-berkeley/Python-Deep-Learning)
 
-# Contributors
+# Colaboradores
 
 -  [Mingyu Yuan](https://github.com/mingyu-yuan)
--  [Pratik Sachdeva](https://github.com/pssachdeva)
--  [Tom van Nuenen](https://github.com/tomvannuenen)
--  [Ben Gebre-Medhin](http://gebre-medhin.com)
--  [Laura Nelson](http://www.lauraknelson.com)
--  [Teddy Roland](https://teddyroland.com/about/)
--  [Geoff Bacon](http://linguistics.berkeley.edu/~bacon/)
--  [Caroline Le Pennec-Caldichoury](https://dlab.berkeley.edu/people/caroline-le-pennec)
+- [Pratik Sachdeva](https://github.com/pssachdeva)
+- [Tom van Nuenen](https://github.com/tomvannuenen)
+- [Ben Gebre-Medhin](http://gebre-medhin.com)
+- [Laura Nelson](http://www.lauraknelson.com)
+- [Teddy Roland](https://teddyroland.com/about/)
+- [Geoff Bacon](http://linguistics.berkeley.edu/~bacon/)
+- [Caroline Le Pennec-Caldichoury](https://dlab.berkeley.edu/people/caroline-le-pennec)
 
-These materials have evolved over a number of years. They were first developed
-by Laura Nelson and Teddy Roland, with contributions and revisions made by Ben
-Gebre-Medhin, Geoff Bacon, and Caroline Le Pennec-Caldichoury and Pratik Sachdeva. 
-They were revamped by Mingyu Yuan in the summer of 2024.
-
+Estos materiales han evolucionado a lo largo de varios años. Se desarrollaron por primera vez
+por Laura Nelson y Teddy Roland, con contribuciones y revisiones realizadas por Ben
+Gebre-Medhin, Geoff Bacon y Caroline Le Pennec-Caldichoury y Pratik Sachdeva. 
+Fueron renovados por Mingyu Yuan en el verano de 2024.
