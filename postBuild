@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -e
+python -m spacy download en_core_web_sm
+python - <<'PYBUILD'
+import nltk
+for package in ["punkt", "stopwords", "wordnet"]:
+    nltk.download(package)
+PYBUILD
